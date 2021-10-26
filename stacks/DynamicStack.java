@@ -1,6 +1,6 @@
 package stacks;
 
-public class DynamicStack extends Stack {
+public class DynamicStack extends MyStack {
 	
 	public void push(int item) throws Exception {
 		

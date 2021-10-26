@@ -1,16 +1,16 @@
 package stacks;
 
-public class Stack {
+public class MyStack {
 	
 	int[] arr;
 	int tos;
 	
-	public Stack() {
+	public MyStack() {
 		arr= new int[5];
 		tos= -1;
 	}
 	
-	public Stack(int size) {
+	public MyStack(int size) {
 		arr = new int[size];
 		tos=-1;
 	}
