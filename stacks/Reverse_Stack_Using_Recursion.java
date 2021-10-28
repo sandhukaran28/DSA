@@ -10,11 +10,25 @@ public class Reverse_Stack_Using_Recursion {
 		if (st.isEmpty()) {
 			return;
 		}
-		reverse(st);
+		
 		int ele = st.pop();
+		reverse(st);
 
-		st.push(ele);
+		insert(ele,st);
+		
 
+	}
+	
+	public static void insert(int n,Stack<Integer> st) {
+		
+		if(st.isEmpty()) {
+			st.push(n);
+		}
+		else {
+			int ele = st.pop();
+			insert(n,st);
+			st.push(ele);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -29,10 +43,11 @@ public class Reverse_Stack_Using_Recursion {
 
 			st.push(sc.nextInt());
 		}
+		reverse(st);
 
 		while (!st.isEmpty()) {
 
-			System.out.print(st.pop() + " ");
+			System.out.println(st.pop());
 		}
 
 		sc.close();
