@@ -18,7 +18,7 @@ public class Celebrity_Problem {
 				arr[i][j] = sc.nextInt();
 			}
 		}
-
+		sc.close();
 		Stack<Integer> st =new Stack<>();
 		for(int i=0;i<n;i++) {
 			
@@ -59,7 +59,7 @@ public class Celebrity_Problem {
 		}
 		
 		System.out.println(p);
-		sc.close();
+		
 	}
 
 }

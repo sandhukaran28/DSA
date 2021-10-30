@@ -61,6 +61,9 @@ public class Asteroid_Collision {
 								
 								st.push(pre);
 							}
+							else {
+								break;
+							}
 						}
 
 					}
