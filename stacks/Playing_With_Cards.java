@@ -40,44 +40,39 @@ public class Playing_With_Cards {
 		int n, q;
 		n = sc.nextInt();
 		q = sc.nextInt();
-		
+
 		Stack<Integer> a = new Stack<>();
 		Stack<Integer> b = new Stack<>();
 		Stack<Integer> ai = new Stack<>();
-		
-		for(int i=0;i<n;i++) {
-			
+
+		for (int i = 0; i < n; i++) {
+
 			a.push(sc.nextInt());
 		}
-		
-		for(int i=1;i<=q;i++) {
-			
-			
-			
-			while(!a.isEmpty()) {
-				
+
+		for (int i = 1; i <= q; i++) {
+
+			while (!a.isEmpty()) {
+
 				int num = a.pop();
-				if(num%(primes.get(i)) == 0) {
+				if (num % (primes.get(i)) == 0) {
 					b.push(num);
-				}
-				else {
+				} else {
 					ai.push(num);
 				}
 			}
-			
-			while(!b.isEmpty()) {
+
+			while (!b.isEmpty()) {
 				System.out.println(b.pop());
 			}
-			
-			a = ai; 
-			ai =new Stack<>();
+
+			a = ai;
+			ai = new Stack<>();
 		}
-		
-		while(!a.isEmpty()) {
+
+		while (!a.isEmpty()) {
 			System.out.println(a.pop());
 		}
-		
-		
 
 		sc.close();
 	}
