@@ -1,2 +1,2 @@
 # DSA
- ## This Repo Contains mmportant questions of data structures and algorithms.
+ ## This Repo Contains important questions of data structures and algorithms.
