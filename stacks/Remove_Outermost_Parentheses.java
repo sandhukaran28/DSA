@@ -6,37 +6,34 @@ import java.util.Stack;
 public class Remove_Outermost_Parentheses {
 
 	public static void main(String[] args) {
-		
-		
-		Scanner sc = new Scanner(System.in); 
-		
+
+		Scanner sc = new Scanner(System.in);
+
 		String s = sc.nextLine();
-		String res ="";
-		
-		Stack<Character> st =new Stack<>();
-		
+		String res = "";
+
+		Stack<Character> st = new Stack<>();
+
 		int cnt = 0;
-		
-		for(int i=0;i<s.length();i++) {
-			
-			if(s.charAt(i) == '(') {
+
+		for (int i = 0; i < s.length(); i++) {
+
+			if (s.charAt(i) == '(') {
 				st.push('(');
-			}
-			else {
-				
-				if(st.size() == 1 && cnt == 0) {
+			} else {
+
+				if (st.size() == 1 && cnt == 0) {
 					st.pop();
-				}
-				else  {
-					while(st.size() != 1) {
-						
+				} else {
+					while (st.size() != 1) {
+
 						cnt++;
-						res+='(';
+						res += '(';
 						st.pop();
 					}
-					
-					if(cnt!= 0) {
-						res+=')';
+
+					if (cnt != 0) {
+						res += ')';
 						cnt--;
 					}
 				}
