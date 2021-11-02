@@ -31,7 +31,7 @@ public class Next_Smaller_Element {
 
 			while (!st.isEmpty() && arr[i] < arr[st.peek()]) {
 
-				nse[st.pop()] = arr[i];
+				nse[st.pop()] = i;
 
 			}
 
