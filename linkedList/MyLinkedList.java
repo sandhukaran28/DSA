@@ -80,7 +80,7 @@ public class MyLinkedList {
 
 		while (i != null) {
 
-			System.out.print(i.val + " ");
+			System.out.print(i.val + "->");
 			i = i.next;
 		}
 		System.out.println();
@@ -139,5 +139,92 @@ public class MyLinkedList {
 
 		return i;
 	}
+
+	public int deleteFirst() throws Exception {
+		if (head == null) {
+			throw new Exception("LinkedList Empty");
+		}
+		Node i = head;
+		head = head.next;
+		i.next = null;
+		int temp = i.val;
+		i = null;
+		return temp;
+
+	}
+	
+	public int deleteLast() throws Exception {
+		
+		if(size() == 1) {
+			return deleteFirst();
+		}
+		Node i = getNodeAtIndex(size()-2);
+		int temp = getNodeAtIndex(size()-1).val;
+		i.next = null;
+		return temp;
+	}
+	
+	public int deleteAIndex(int idx) throws Exception {
+		
+		if(idx == 0) {
+			return deleteFirst();
+		}
+		else if(idx == size()-1) {
+			return deleteLast();
+		}
+		else {
+			
+			Node pre = getNodeAtIndex(idx-1);
+			Node curr = pre.next;
+			Node nx = pre.next.next;
+			
+			pre.next = nx;
+			curr.next = null;
+			int temp = curr.val;
+			curr = null;
+			return temp;
+		}
+		
+	}
+	
+	public void reverse() {
+		
+		if(head == null || head.next == null) {	
+			return;
+		}
+		
+		Node pre = null;
+		Node curr = head;
+		
+		while(curr!=null) {
+			Node nx= curr.next;
+			curr.next = pre;
+			pre = curr;
+			curr = nx;
+		}
+		head = pre;
+	}
+	
+	public int middle() {
+		
+		Node slow = head;
+		Node fast = head;
+		
+		while(fast!=null && fast.next !=null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		
+		return slow.val;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
