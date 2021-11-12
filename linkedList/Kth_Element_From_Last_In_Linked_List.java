@@ -2,9 +2,9 @@ package linkedList;
 
 import java.util.Scanner;
 
-public class Intersection_of_Two_Linked_Lists {
+public class Kth_Element_From_Last_In_Linked_List {
 
-	public static class MyLinkedList {
+	public static  class MyLinkedList {
 
 		static class Node {
 
@@ -222,70 +222,37 @@ public class Intersection_of_Two_Linked_Lists {
 
 	}
 
-	public static int getIntersectionNode(MyLinkedList.Node headA, int s1, MyLinkedList.Node headB, int s2) {
-		MyLinkedList.Node x = headA, y = headB;
-		if (s1 == s2) {
-
-			while (x != null && y != null) {
-				if (x.val == y.val) {
-					return x.val;
-				}
-				x = x.next;
-				y = y.next;
-			}
-
-			return -1;
-		} else {
-
-			if (s1 > s2) {
-
-				for (int i = 1; i <= s1 - s2; i++) {
-
-					x = x.next;
-				}
-			} else {
-
-				for (int i = 1; i <= s2 - s1; i++) {
-
-					y = y.next;
-				}
-			}
-
-			while (x != null && y != null) {
-
-				if (x.val == y.val) {
-					return x.val;
-				}
-				x = x.next;
-				y = y.next;
-			}
-
-			return -1;
-
-		}
-	}
-
+	
 	public static void main(String[] args) {
-
+		
 		Scanner sc = new Scanner(System.in);
-
-		int n, m;
-		n = sc.nextInt();
-
-		MyLinkedList l1 = new MyLinkedList();
-		MyLinkedList l2 = new MyLinkedList();
-
-		for (int i = 0; i < n; i++) {
-			l1.addAtLast(sc.nextInt());
-
+		
+		MyLinkedList ll = new MyLinkedList();
+		
+		int n =0;
+		while(n!=-1) {
+			
+			n = sc.nextInt();
+			if(n!=-1)
+			ll.addAtLast(n);
 		}
-		m = sc.nextInt();
-		for (int i = 0; i < m; i++) {
-			l2.addAtLast(sc.nextInt());
+		int k  = sc.nextInt();
+		
+		MyLinkedList.Node f = ll.head, s =ll.head;
+		
+		for(int i =1;i<=k ;i++) {
+			
+			f = f.next;
 		}
-
-		System.out.println(getIntersectionNode(l1.head, l1.size(), l2.head, l2.size()));
+		while(f!=null) {
+			
+			f = f.next;
+			s = s.next;
+		}
+		
+		System.out.println(s.val);
 		sc.close();
 
 	}
+
 }
