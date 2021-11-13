@@ -1,42 +1,24 @@
 package queue;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Hoodies_At_Coding_Blocks {
-
-	static class Student {
-
-		public int course, roll;
-
-		Student(int course, int roll) {
-			this.course = course;
-			this.roll = roll;
-		}
-	}
-
-	public static int find(LinkedList<Student> l, int course, int i) {
-
-		if (l.size() == 0) {
-
-			return -1;
-		}
-
-		Student curr = l.removeLast();
-		if (curr.course == course) {
-			return i;
-		}
-
-		return find(l, course, i + 1);
-
-	}
 
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
 
-		LinkedList<Student> q = new LinkedList<>();
+		ArrayList<Queue<Integer>> courses = new ArrayList<>();
 
+		for (int i = 0; i <= 4; i++) {
+
+			courses.add(new LinkedList<>());
+		}
+
+		ArrayList<Integer> order = new ArrayList<>();
 		int qu = sc.nextInt();
 
 		while (qu-- > 0) {
@@ -46,23 +28,26 @@ public class Hoodies_At_Coding_Blocks {
 
 				int course = sc.nextInt();
 				int roll = sc.nextInt();
-				Student stu = new Student(course, roll);
-				@SuppressWarnings("unchecked")
-				int res = find((LinkedList<Student>) q.clone(), course, 0);
-				if (res == -1) {
+				courses.get(course).add(roll);
 
-					q.addLast(stu);
-				} else {
-
-					q.add(q.size() - res, stu);
+				if (!order.contains(course)) {
+					order.add(course);
 				}
 
 			} else {
-				Student stu = q.poll();
-				System.out.println(stu.course + " " + stu.roll);
-			}
 
+				int course = order.get(0);
+
+				int roll = courses.get(course).remove();
+
+				System.out.println(course + " " + roll);
+
+				if (courses.get(course).isEmpty()) {
+					order.remove(0);
+				}
+			}
 		}
+		sc.close();
 	}
 
 }

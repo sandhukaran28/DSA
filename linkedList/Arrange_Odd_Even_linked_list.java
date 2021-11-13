@@ -2,8 +2,6 @@ package linkedList;
 
 import java.util.Scanner;
 
-import linkedList.Linked_List_K_Append.MyLinkedList.Node;
-
 public class Arrange_Odd_Even_linked_list {
 
 	public static class MyLinkedList {
