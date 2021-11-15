@@ -1,5 +1,9 @@
 package binary_tree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class BinaryTree {
@@ -128,6 +132,48 @@ public class BinaryTree {
 
 		return left + right + 1;
 
+	}
+
+	public void lvlOrderLineWise() {
+		// TODO Auto-generated method stub
+
+		lvlOrderLineWise(root);
+	}
+
+	private void lvlOrderLineWise(Node root) {
+		// TODO Auto-generated method stub
+
+		List<List<Integer>> ans = new ArrayList<>();
+		Queue<Node> q = new LinkedList<>();
+
+		List<Integer> lvlList = new ArrayList<>();
+		q.add(root);
+		q.add(null);
+		while (!q.isEmpty()) {
+			Node front = q.remove();
+			if (front == null) {
+
+				if (!q.isEmpty()) {
+
+					q.add(null);
+				}
+
+				ans.add(lvlList);
+				lvlList = new ArrayList<>();
+			} else {
+				// System.out.print(front.val + " ");
+				lvlList.add(front.val);
+				if (front.left != null) {
+					q.add(front.left);
+				}
+
+				if (front.right != null) {
+					q.add(front.right);
+				}
+			}
+		}
+
+		System.out.println(ans);
 	}
 
 }

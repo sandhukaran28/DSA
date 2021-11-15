@@ -1,6 +1,6 @@
 package binary_tree;
 
-public class Diameter {
+public class Balanced_Tree {
 
 	public class TreeNode {
 		int val;
@@ -33,21 +33,18 @@ public class Diameter {
 		return Math.max(left, right) + 1;
 	}
 
-	public int diameterOfBinaryTree(TreeNode root) {
+	public boolean isBalanced(TreeNode root) {
 
 		if (root == null) {
-			return 0;
+			return true;
 		}
 
 		int lh = maxDepth(root.left);
 		int rh = maxDepth(root.right);
 
-		int left = diameterOfBinaryTree(root.left);
-		int right = diameterOfBinaryTree(root.right);
+		boolean bal = Math.abs(lh - rh) <= 1;
 
-		int curr = lh + rh;
-		return Math.max(curr, Math.max(left, right));
+		return bal && isBalanced(root.left) && isBalanced(root.right);
 
 	}
-
 }

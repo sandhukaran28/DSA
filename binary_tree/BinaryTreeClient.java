@@ -11,7 +11,9 @@ public class BinaryTreeClient {
 //		bt.inOrder(bt.root);
 //		System.out.println();
 //		bt.postOrder(bt.root);
-		System.out.println(bt.totalNodes(bt.root));
+//		System.out.println(bt.totalNodes(bt.root));
+		
+		bt.display();
 	}
 
 }
