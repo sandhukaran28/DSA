@@ -73,36 +73,36 @@ public class Triplets_From_Three_Linked_Lists {
 
 	public static void sum(MyLinkedList.Node l1, MyLinkedList.Node l2, MyLinkedList.Node l3, int target) {
 
-		boolean find =false;
+		boolean find = false;
 		MyLinkedList.Node t2 = l2;
 		MyLinkedList.Node t3 = l3;
-	while(l1!=null) {
+		while (l1 != null) {
 
-		while(l2!=null) {
-	
-			while(l3!=null) {
-				
-				if(l1.val + l2.val + l3.val == target) {
-				
-					System.out.println(l1.val+" "+l2.val+" "+l3.val);
-					find = true;
-					break;
+			while (l2 != null) {
+
+				while (l3 != null) {
+
+					if (l1.val + l2.val + l3.val == target) {
+
+						System.out.println(l1.val + " " + l2.val + " " + l3.val);
+						find = true;
+						break;
+					}
+					l3 = l3.next;
 				}
-				l3=l3.next;
-			}
-			if(find)
-				break;
-			
-			l2 =l2.next;
-			l3 =t3;
-		}
+				if (find)
+					break;
 
-		if(find)
-			break;
-		
-		l1 = l1.next;
-		l2=t2;
-	}
+				l2 = l2.next;
+				l3 = t3;
+			}
+
+			if (find)
+				break;
+
+			l1 = l1.next;
+			l2 = t2;
+		}
 	}
 
 	public static void main(String[] args) {

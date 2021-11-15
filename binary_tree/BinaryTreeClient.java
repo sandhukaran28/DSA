@@ -6,11 +6,12 @@ public class BinaryTreeClient {
 
 		BinaryTree bt = new BinaryTree();
 
-		bt.preOrder(bt.root);
-		System.out.println();
-		bt.inOrder(bt.root);
-		System.out.println();
-		bt.postOrder(bt.root);
+//		bt.preOrder(bt.root);
+//		System.out.println();
+//		bt.inOrder(bt.root);
+//		System.out.println();
+//		bt.postOrder(bt.root);
+		System.out.println(bt.totalNodes(bt.root));
 	}
 
 }

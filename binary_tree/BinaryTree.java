@@ -112,4 +112,22 @@ public class BinaryTree {
 		System.out.print(root.val + " ");
 	}
 
+	public int totalNodes(Node root) {
+
+		if (root == null) {
+			return 0;
+		}
+		int left = 0, right = 0;
+		if (root.left != null) {
+			left = totalNodes(root.left);
+		}
+		if (root.right != null) {
+
+			right = totalNodes(root.right);
+		}
+
+		return left + right + 1;
+
+	}
+
 }
