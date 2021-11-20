@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -18,6 +19,20 @@ public class BinaryTree {
 
 			this.val = val;
 		}
+	}
+	
+	private class Quad{
+		
+		Node curr;
+		boolean isSelfDone;
+		boolean isLeftDone;
+		boolean isRightDone;
+		
+		public Quad(Node nn) {
+			
+			curr = nn;
+		}
+		
 	}
 
 	public Node root;
@@ -174,6 +189,47 @@ public class BinaryTree {
 		}
 
 		System.out.println(ans);
+	}
+	
+	public void preOrderInterative(Node root) {
+		
+		if(this.root == null) {
+			return;
+		}
+		Stack<Quad> st = new Stack<>();
+		st.push(new Quad(root));
+		
+		while(!st.isEmpty()) {
+			
+			Quad top = st.peek();
+			
+			if(!top.isSelfDone) {
+				System.out.print(top.curr.val);
+				top.isSelfDone = true;
+			}
+			else if(!top.isLeftDone) {
+				 if(top.curr.left!=null) {
+					 st.push(new Quad(top.curr.left));
+					 top.isLeftDone =true;
+				 }
+				 else {
+					 top.isLeftDone = true;
+				 }
+			}
+			else if(!top.isRightDone) {
+				if(top.curr.right!=null) {
+					st.push(new Quad(top.curr.right));
+					top.isRightDone =true;
+				}
+				else {
+					top.isRightDone = true;
+				}
+			}
+			else {
+				st.pop();
+			}
+			
+		}
 	}
 
 }
