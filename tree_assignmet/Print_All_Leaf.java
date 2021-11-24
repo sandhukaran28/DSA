@@ -1,12 +1,11 @@
-package binary_tree;
+package tree_assignmet;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Right_Side_View {
+public class Print_All_Leaf {
+
 	public static Scanner sc = new Scanner(System.in);
 
 	public static class BinaryTree {
@@ -62,62 +61,25 @@ public class Right_Side_View {
 			return root;
 
 		}
-
-		public List<Integer> rightSideView(Node root) {
-			List<Integer> ans = new ArrayList<>();
-
-			if (root == null) {
-				return ans;
+		
+		public void print(Node root) {
+			
+			if(root == null) {
+				return;
 			}
-
-			Queue<Node> q = new LinkedList<>();
-
-			q.add(root);
-			q.add(null);
-
-			while (!q.isEmpty()) {
-
-				Node front = q.remove();
-
-				if (front == null) {
-
-					if (!q.isEmpty()) {
-						q.add(null);
-					}
-				} else {
-
-					if (q.peek() != null) {
-
-						if (front.left != null) {
-
-							q.add(front.left);
-						}
-					} else {
-						ans.add(front.val);
-					}
-
-					if (front.left != null) {
-
-						q.add(front.left);
-					}
-					if (front.right != null) {
-
-						q.add(front.right);
-					}
-				}
+			if(root.left ==null && root.right ==null) {
+				System.out.print(root.val+" ");
 			}
-			return ans;
-
+			print(root.left);
+			print(root.right);
 		}
+
 	}
-
+	
 	public static void main(String[] args) {
-
+		
 		BinaryTree bt = new BinaryTree();
-		List<Integer> l = bt.rightSideView(bt.root);
-		for (int i = 0; i < l.size(); i++) {
-			System.out.print(l.get(i) + " ");
-		}
+		bt.print(bt.root);
 	}
 
 }
