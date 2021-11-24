@@ -14,6 +14,6 @@ public class BST_Client {
 		System.out.println();
 		System.out.println(bst.max(bst.root));
 		System.out.println(bst.min(bst.root));
-	}
+	} 
 
 }
