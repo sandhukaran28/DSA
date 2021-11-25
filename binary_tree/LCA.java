@@ -1,12 +1,10 @@
 package binary_tree;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
 
 public class LCA {
 	public static Scanner sc = new Scanner(System.in);
+
 	public static class BinaryTree {
 
 		private class Node {
@@ -89,13 +87,37 @@ public class LCA {
 			display(root.right);
 
 		}
-	
+		Node lca(Node root, int a, int b) {
 
+			if (root == null) {
+				return null;
+			}
+
+			if (root.val == a || root.val == b) {
+				return root;
+			}
+
+			Node l = lca(root.left, a, b);
+			Node r = lca(root.right, a, b);
+
+			if (l != null && r != null) {
+
+				return root;
+			}
+			if (l == null)
+				return r;
+
+			return l;
+		}
+	
+	}
 	public static void main(String[] args) {
 
 		BinaryTree bt = new BinaryTree();
-
+		int a = sc.nextInt();
+		int b =sc.nextInt();
+		System.out.println(bt.lca(bt.root, a, b).val);
 	}
 	
-	}
+	
 }
