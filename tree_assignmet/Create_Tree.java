@@ -63,42 +63,9 @@ public class Create_Tree {
 
 		public void input(int post[], int in[]) {
 
-			int left = post[0];
-			int right = post[1];
-			int val = post[2];
-
-			Node root = new Node(val);
-			Node lN = new Node(left);
-			Node rN = new Node(right);
-			Queue<Node> q = new LinkedList<>();
-			root.left = lN;
-			root.right = rN;
-			q.add(lN);
-			q.add(rN);
-
-			for (int i = 3; i < post.length; i += 2) {
-
-				Node curr = null;
-				if (!q.isEmpty()) {
-
-					curr = q.remove();
-				}
-				if (curr != null) {
-					Node nl = new Node(post[i]);
-					curr.left = nl;
-					q.add(nl);
-					if (i + 1 < post.length) {
-
-						Node nr = new Node(post[i+1]);
-						curr.right = nr;
-						q.add(nr);
-					}
-				}
-
-			}
+			Node root  = new Node(post[post.length-1]);
 			
-			this.root = root;
-			this.display();
+			
 
 		}
 
