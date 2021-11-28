@@ -1,8 +1,12 @@
 package tree_assignmet;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 
-public class Remove_leaves {
+public class ArrayList_Of_Levels {
 
 	public static Scanner sc = new Scanner(System.in);
 
@@ -86,34 +90,39 @@ public class Remove_leaves {
 
 		}
 
-		public void removeLeaf(Node root) {
+		public List<List<Integer>> lvlOrder(Node root) {
 
-			if (root == null || (root.left == null && root.right == null)) {
-				this.display(null);
+			List<List<Integer>> ans = new ArrayList<>();
+			if (root == null)
+				return ans;
+			List<Integer> currL = new ArrayList<>(); 
+			Queue<Node> q = new LinkedList<>();
+			q.add(root);
+			q.add(null);
+
+			while (!q.isEmpty()) {
+
+				Node curr = q.remove();
+
+				if (curr == null) {
+
+					ans.add(currL);
+					currL =new ArrayList<>();
+					if (!q.isEmpty()) {
+						q.add(null);
+					}
+					continue;
+				}
+
+				currL.add(curr.val);
+				if (curr.left != null)
+					q.add(curr.left);
+				if (curr.right != null)
+					q.add(curr.right);
+
 			}
-
-			remove(root);
-			this.display(root);
-
-		}
-
-		private boolean remove(Node root) {
-
-			if (root == null) {
-				return false;
-			}
-
-			if (root.left == null && root.right == null) {
-				return true;
-			}
-			boolean left = remove(root.left);
-			boolean right = remove(root.right);
-			if (left == true)
-				root.left = null;
-			if (right == true)
-				root.right = null;
-
-			return false;
+			
+			return ans;
 		}
 
 	}
@@ -121,10 +130,11 @@ public class Remove_leaves {
 	public static void main(String[] args) {
 
 		BinaryTree bt = new BinaryTree();
-
-		bt.remove(bt.root);
-		bt.display();
-
-	}
+		
+		List<List<Integer>> al = bt.lvlOrder(bt.root);
+		
+		System.out.println(al);
+		}
+	
 
 }

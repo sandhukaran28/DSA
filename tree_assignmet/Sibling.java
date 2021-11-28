@@ -2,7 +2,7 @@ package tree_assignmet;
 
 import java.util.Scanner;
 
-public class Is_Balaced {
+public class Sibling {
 
 	public static Scanner sc = new Scanner(System.in);
 
@@ -46,45 +46,70 @@ public class Is_Balaced {
 			}
 
 			return nn;
-		}
-
-		class Pair {
-			int ht;
-			boolean bal;
-
-			public Pair(int ht, boolean bal) {
-				this.ht = ht;
-				this.bal = bal;
-			}
 
 		}
 
-		public boolean isBalanced(Node root) {
+		public void display() {
 
-			return bal(root).bal;
+			display(root);
+
 		}
 
-		public Pair bal(Node root) {
+		private void display(Node root) {
+
 			if (root == null) {
-				return new Pair(0, true);
+				return;
 			}
 
-			Pair left = bal(root.left);
-			Pair right = bal(root.right);
+			String str = "";
 
-			int ht = left.ht >= right.ht ? left.ht : right.ht;
+			if (root.left != null) {
 
-			Pair res = new Pair(ht + 1, Math.abs(left.ht - right.ht) <= 1 && left.bal && right.bal);
+				str += root.left.val;
 
-			return res;
+			} else {
+				str += "END";
+			}
+
+			str += " => " + root.val + " <= ";
+			if (root.right != null) {
+
+				str += root.right.val;
+			} else {
+				str += "END";
+			}
+
+			System.out.println(str);
+
+			display(root.left);
+			display(root.right);
+
 		}
 
+		public void sibling(Node root) {
+
+			if (root == null) {
+				return;
+			}
+
+			if (root.left != null && root.right == null) {
+				System.out.print(root.left.val + " ");
+			} else if (root.left == null && root.right != null) {
+
+				System.out.print(root.right.val + " ");
+			}
+
+			sibling(root.left);
+			sibling(root.right);
+
+			return;
+		}
 	}
 
 	public static void main(String[] args) {
 
 		BinaryTree bt = new BinaryTree();
-		System.out.println(bt.isBalanced(bt.root));
+		bt.sibling(bt.root);
 	}
 
 }

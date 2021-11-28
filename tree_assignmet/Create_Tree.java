@@ -1,7 +1,5 @@
 package tree_assignmet;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Create_Tree {
@@ -63,9 +61,7 @@ public class Create_Tree {
 
 		public void input(int post[], int in[]) {
 
-			Node root  = new Node(post[post.length-1]);
-			
-			
+			Node root = new Node(post[post.length - 1]);
 
 		}
 

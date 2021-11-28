@@ -1,9 +1,11 @@
 package tree_assignmet;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
-public class Remove_leaves {
-
+public class Level_Order {
+	
 	public static Scanner sc = new Scanner(System.in);
 
 	public static class BinaryTree {
@@ -85,45 +87,44 @@ public class Remove_leaves {
 			display(root.right);
 
 		}
-
-		public void removeLeaf(Node root) {
-
-			if (root == null || (root.left == null && root.right == null)) {
-				this.display(null);
+		
+		public void lvlOrder(Node root) {
+			
+			if(root == null)
+				return;
+			
+			Queue<Node> q = new LinkedList<>();
+			q.add(root);
+			q.add(null);
+			
+			while(!q.isEmpty()) {
+				
+				Node curr = q.remove();
+				
+				if(curr == null) {
+					
+					System.out.println();
+					if(!q.isEmpty()) {
+						q.add(null);
+					}
+					continue;
+				}
+				
+				System.out.print(curr.val+" ");
+				if(curr.left !=null)
+					q.add(curr.left);
+				if(curr.right!=null)
+					q.add(curr.right);
+				
 			}
-
-			remove(root);
-			this.display(root);
-
-		}
-
-		private boolean remove(Node root) {
-
-			if (root == null) {
-				return false;
-			}
-
-			if (root.left == null && root.right == null) {
-				return true;
-			}
-			boolean left = remove(root.left);
-			boolean right = remove(root.right);
-			if (left == true)
-				root.left = null;
-			if (right == true)
-				root.right = null;
-
-			return false;
 		}
 
 	}
 
 	public static void main(String[] args) {
-
+		
 		BinaryTree bt = new BinaryTree();
-
-		bt.remove(bt.root);
-		bt.display();
+		bt.lvlOrder(bt.root);
 
 	}
 

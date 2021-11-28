@@ -109,7 +109,8 @@ public class Replace_With_Sum {
 		}
 		Arrays.sort(arr);
 		bst.construct(arr);
-		bst.replace(bst.root);
+//		bst.replace(bst.root);
+		bst.display(bst.root);
 
 		sc.close();
 	}

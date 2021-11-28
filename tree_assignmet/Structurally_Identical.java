@@ -2,7 +2,7 @@ package tree_assignmet;
 
 import java.util.Scanner;
 
-public class Remove_leaves {
+public class Structurally_Identical {
 
 	public static Scanner sc = new Scanner(System.in);
 
@@ -86,44 +86,31 @@ public class Remove_leaves {
 
 		}
 
-		public void removeLeaf(Node root) {
+		public boolean identical(Node t1, Node t2) {
 
-			if (root == null || (root.left == null && root.right == null)) {
-				this.display(null);
+			if (t1 == null && t2 == null) {
+				return true;
 			}
 
-			remove(root);
-			this.display(root);
+			if (t1 == null || t2 == null) {
 
-		}
-
-		private boolean remove(Node root) {
-
-			if (root == null) {
 				return false;
 			}
 
-			if (root.left == null && root.right == null) {
-				return true;
-			}
-			boolean left = remove(root.left);
-			boolean right = remove(root.right);
-			if (left == true)
-				root.left = null;
-			if (right == true)
-				root.right = null;
+			boolean left = identical(t1.left, t2.left);
+			boolean right = identical(t1.right, t2.right);
 
-			return false;
+			return left && right;
 		}
 
 	}
 
 	public static void main(String[] args) {
 
-		BinaryTree bt = new BinaryTree();
+		BinaryTree t1 = new BinaryTree();
+		BinaryTree t2 = new BinaryTree();
 
-		bt.remove(bt.root);
-		bt.display();
+		System.out.println(t1.identical(t1.root, t2.root));
 
 	}
 
