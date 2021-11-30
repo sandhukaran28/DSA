@@ -1,7 +1,7 @@
 package tree_assignmet;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Zig_zag {
@@ -93,44 +93,65 @@ public class Zig_zag {
 			int lvl = 1;
 			if (root == null)
 				return;
-			Deque<Node> q = new ArrayDeque<>();
+
+			Queue<Node> q = new LinkedList<>();
 			q.add(root);
-			Node Null = new Node(-100);
-			q.add(Null);
+			q.add(null);
 
 			while (!q.isEmpty()) {
 
-				Node curr = q.removeFirst();
+				Node curr = q.remove();
 
-				if (curr.val == -100) {
+				if (curr == null) {
 
-					lvl++;
 					if (!q.isEmpty()) {
-						q.addLast(new Node(-100));
+						lvl++;
+						q.add(null);
 					}
 					continue;
 				}
-				System.out.print(curr.val + " ");
-				if (lvl % 2 == 0) {
-					if (curr.left != null)
-						q.addFirst(curr.left);
-					if (curr.right != null)
-						q.addFirst(curr.right);
-				} else {
-					
-						if(!q.isEmpty() && q.peek().val == -100)
-						{
-							if (curr.right != null)
-								q.addFirst(curr.right);
-							if (curr.left != null)
-								q.addFirst(curr.left);	
-						}
-						if (curr.right != null)
-						q.addFirst(curr.right);
-					if (curr.left != null)
-						q.addFirst(curr.left);
-				}
 
+				if (lvl % 2 == 0) {
+
+					Node right = null;
+
+					if (q.peek() != null) {
+
+						right = q.remove();
+						System.out.print(right.val + " ");
+
+					}
+					System.out.print(curr.val + " ");
+					if (curr.left != null) {
+						q.add(curr.left);
+					}
+					if (curr.right != null) {
+
+						q.add(curr.right);
+					}
+
+					if (right != null) {
+
+						if (right.left != null) {
+							q.add(right.left);
+						}
+						if (right.right != null) {
+
+							q.add(right.right);
+						}
+					}
+
+				} else {
+					System.out.print(curr.val + " ");
+					if (curr.left != null) {
+						q.add(curr.left);
+					}
+					if (curr.right != null) {
+
+						q.add(curr.right);
+					}
+
+				}
 			}
 
 		}

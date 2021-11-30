@@ -1,7 +1,7 @@
 package tree_assignmet;
 
-import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class Replace_With_Sum {
 
@@ -51,34 +51,30 @@ public class Replace_With_Sum {
 			display(root.right);
 
 		}
-
-		public void construct(int[] arr) {
-
-			this.root = construct(arr, 0, arr.length - 1);
-		}
-
-		private Node construct(int[] arr, int l, int r) {
-
-			if (l <= r) {
-
-				int mid = (l + r) / 2;
-				Node nn = new Node(arr[mid]);
-
-				nn.left = construct(arr, l, mid - 1);
-				nn.right = construct(arr, mid + 1, r);
-
-				return nn;
-			}
-
-			return null;
-
-		}
-
 		public void replace(Node root) {
 			
 			replaceLarge(root, 0);
 			this.display(root);
 
+		}
+		public Node addToBST(Node root, int val) {
+			
+			if(root == null) {
+				
+				return new Node(val);
+			}
+		
+			
+			if(val <= root.val) {
+				
+				root.left = addToBST(root.left, val);
+		
+			}
+			else {
+				
+				root.right = addToBST(root.right, val);
+			}
+			return root;
 		}
 
 		public int replaceLarge(Node root, int sum) {
@@ -102,16 +98,15 @@ public class Replace_With_Sum {
 		Scanner sc = new Scanner(System.in);
 		BST bst = new BST();
 		int n = sc.nextInt();
-		int arr[] = new int[n];
-
-		for (int i = 0; i < n; i++) {
-			arr[i] = sc.nextInt();
-		}
-		Arrays.sort(arr);
-		bst.construct(arr);
-//		bst.replace(bst.root);
-		bst.display(bst.root);
-
+		n--;
+		int val = sc.nextInt();
+	     bst.root = bst.addToBST(null, val);
+	     while(n-->0) {
+	    	 
+	    	 val = sc.nextInt();
+	    	 bst.addToBST(bst.root, val);   	 
+	     }
+	     	bst.replace(bst.root);
 		sc.close();
 	}
 

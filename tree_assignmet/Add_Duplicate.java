@@ -8,7 +8,7 @@ public class Add_Duplicate {
 
 public static class BST {
 
-	private class Node {
+	private static class Node {
 
 		int val;
 		Node left;
@@ -74,6 +74,26 @@ public static class BST {
 
 	}
 	
+	public Node addToBST(Node root, int val) {
+		
+		if(root == null) {
+			
+			return new Node(val);
+		}
+	
+		
+		if(val <= root.val) {
+			
+			root.left = addToBST(root.left, val);
+	
+		}
+		else {
+			
+			root.right = addToBST(root.right, val);
+		}
+		return root;
+	}
+	
 	public void duplicate(Node root) {
 		
 		if(root == null) {
@@ -94,20 +114,27 @@ public static class BST {
 		duplicate(root.right);
 	}
 	}
+
+
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		BST bst = new BST();
 		int n = sc.nextInt();
-		int arr[] = new int[n];
-
-		for (int i = 0; i < n; i++) {
-			arr[i] = sc.nextInt();
-		}
-		Arrays.sort(arr);
-		bst.construct(arr);
-		bst.duplicate(bst.root);
-		bst.display(bst.root);
+		n--;
+		int val = sc.nextInt();
+	     bst.root = bst.addToBST(null, val);
+	     bst.addToBST(bst.root, val);
+		
+	     while(n-->0) {
+	    	 
+	    	 val = sc.nextInt();
+	    	 bst.addToBST(bst.root, val);
+	    	 bst.addToBST(bst.root, val);
+	    	 
+	     }
+	     
+	     bst.display(bst.root);
 		sc.close();
 
 	}

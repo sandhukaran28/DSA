@@ -54,25 +54,22 @@ public class Print_Till_k {
 
 		}
 
-		public void construct(int[] arr) {
+		public Node addToBST(Node root, int val) {
 
-			this.root = construct(arr, 0, arr.length - 1);
-		}
+			if (root == null) {
 
-		private Node construct(int[] arr, int l, int r) {
-
-			if (l <= r) {
-
-				int mid = (l + r) / 2;
-
-				Node nn = new Node(arr[mid]);
-				nn.left = construct(arr, l, mid - 1);
-				nn.right = construct(arr, mid + 1, r);
-
-				return nn;
+				return new Node(val);
 			}
-			return null;
 
+			if (val <= root.val) {
+
+				root.left = addToBST(root.left, val);
+
+			} else {
+
+				root.right = addToBST(root.right, val);
+			}
+			return root;
 		}
 
 		public void tillK(Node root, Node curr, int node, int k, List<Integer> l) {
@@ -164,17 +161,19 @@ public class Print_Till_k {
 		Scanner sc = new Scanner(System.in);
 
 		int n = sc.nextInt();
-		int arr[] = new int[n];
-		for (int i = 0; i < n; i++) {
 
-			arr[i] = sc.nextInt();
+		BST bst = new BST();
+		n--;
+		int val = sc.nextInt();
+		bst.root = bst.addToBST(null, val);
+		while (n-- > 0) {
+
+			val = sc.nextInt();
+			bst.addToBST(bst.root, val);
 		}
-
 		int node = sc.nextInt();
 		int k = sc.nextInt();
 
-		BST bst = new BST();
-		bst.construct(arr);
 		List<Integer> l = new ArrayList<>();
 		bst.tillK(bst.root, bst.root, node, k, l);
 		Collections.sort(l);
