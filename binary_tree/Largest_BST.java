@@ -90,7 +90,7 @@ public class Largest_BST {
 			return nn;
 		}
 		
-		public int largestBST(Node root) {
+		public long largestBST(Node root) {
 			
 			if(root == null) {
 				return 0;
@@ -101,8 +101,8 @@ public class Largest_BST {
 				return 1;
 			}
 			
-			int left = largestBST(root.left);
-			int right = largestBST(root.right);
+			long left = largestBST(root.left);
+			long right = largestBST(root.right);
 			
 			int lval = -1;
 			int rVal = -1;
@@ -119,13 +119,6 @@ public class Largest_BST {
 				if(lval < root.val && rVal > root.val) {
 					
 					return left+right+ 1;
-				}
-				else if(lval < root.val) {
-					
-					return Math.max(left+1,right);
-				}
-				else if(rVal > root.val) {
-					return Math.max(left,right+1);
 				}
 				
 				return Math.max(left, right);
