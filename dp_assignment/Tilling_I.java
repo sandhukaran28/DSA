@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Tilling_I {
 
-	public static int sol(int n, int[] dp) {
+	public static long sol(int n, long[] dp) {
 
 		if (n == 0) {
 			return 1;
@@ -18,8 +18,8 @@ public class Tilling_I {
 			return dp[n];
 		}
 
-		int c1 = sol(n - 1, dp);
-		int c2 = sol(n - 2, dp);
+		long c1 = sol(n - 1, dp);
+		long c2 = sol(n - 2, dp);
 
 		return dp[n] = c1 + c2;
 	}
@@ -29,7 +29,7 @@ public class Tilling_I {
 		Scanner sc = new Scanner(System.in);
 
 		int n = sc.nextInt();
-		int dp[] = new int[n + 1];
+		long dp[] = new long[n + 1];
 		Arrays.fill(dp, -1);
 		System.out.println(sol(n, dp));
 
