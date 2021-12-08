@@ -48,7 +48,6 @@ public class K_Ordered_LCS {
 
 			t[j] = sc.nextInt();
 		}
-		int max = Math.max(n, m);
 		int dp[][][] = new int[n][m][k + 1];
 
 		for (int i = 0; i < n; i++) {
