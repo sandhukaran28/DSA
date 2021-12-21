@@ -25,7 +25,6 @@ public class Count_Nice_Pairs {
 		int cnt = 0;
 		for (int i = 0; i < n; i++) {
 
-			int curr = nums[i];
 			int diff = nums[i] - rev(nums[i]);
 
 			if (map.containsKey(diff)) {
