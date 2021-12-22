@@ -1,8 +1,11 @@
 package hashing;
 
+import java.util.Arrays;
+
 public class Closest_2_Sum {
 
 	public static void sol(int[] arr, int t) {
+		Arrays.sort(arr);
 		int n = arr.length;
 		int min = arr[1] + arr[0];
 		int l = 0;
