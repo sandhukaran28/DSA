@@ -5,19 +5,19 @@ import java.util.Scanner;
 public class Multiple_In_contineous_Array {
 
 	public static int sol(int arr[], int k) {
-		
-		int n =arr.length;
-		
-		for(int i=0;i<n;i++) {
-			
+
+		int n = arr.length;
+
+		for (int i = 0; i < n; i++) {
+
 			int sum = arr[i];
-			for(int j =i+1;j<n;j++) {
-				
-				sum+=arr[j];
-				if(sum%k == 0) {
+			for (int j = i + 1; j < n; j++) {
+
+				sum += arr[j];
+				if (sum % k == 0) {
 					return 1;
 				}
-				
+
 			}
 		}
 		return 0;
@@ -38,11 +38,10 @@ public class Multiple_In_contineous_Array {
 
 		int k = sc.nextInt();
 		int ans = sol(arr, k);
-		
-		if(ans == 1) {
+
+		if (ans == 1) {
 			System.out.println("True");
-		}
-		else {
+		} else {
 			System.out.println("False");
 		}
 

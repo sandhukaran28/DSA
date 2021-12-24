@@ -61,6 +61,7 @@ public class Create_Tree {
 
 		public void input(int post[], int in[]) {
 
+			@SuppressWarnings("unused")
 			Node root = new Node(post[post.length - 1]);
 
 		}
