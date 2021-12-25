@@ -111,6 +111,48 @@ public class Graph {
 
 	}
 
+	public void dfsHelper(int src) {
+
+		DFS(src, new HashSet<>());
+	}
+
+	private void DFS(int src, Set<Integer> vis) {
+
+		System.out.print(src + " ");
+
+		vis.add(src);
+
+		List<Integer> ls = adjList.getOrDefault(src, new ArrayList<>());
+
+		for (int n : ls) {
+
+			if (!vis.contains(n)) {
+
+				DFS(n, vis);
+			}
+		}
+
+	}
+
+	public int connectedComponents() {
+
+		int cnt = 0;
+
+		Set<Integer> vis = new HashSet<>();
+
+		for (int v = 1; v <= V; v++) {
+
+			if (!vis.contains(v)) {
+
+				DFS(v, vis);
+				cnt++;
+			}
+
+		}
+
+		return cnt;
+	}
+
 	public static void main(String[] args) {
 
 		Graph graph = new Graph(6);
@@ -121,11 +163,14 @@ public class Graph {
 		graph.addEdge(3, 4, true);
 		graph.addEdge(4, 5, true);
 		graph.addEdge(5, 6, true);
+//		graph.addEdge(7, 8, true);
 
 		graph.display();
-		graph.BFS(1);
-		System.out.println();
-		graph.SSSP(1);
+//		graph.BFS(1);
+//		System.out.println();
+//		graph.dfsHelper(1);
+//		System.out.println();
+		System.out.println(graph.connectedComponents());
 
 	}
 
