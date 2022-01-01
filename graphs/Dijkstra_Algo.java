@@ -13,6 +13,7 @@ public class Dijkstra_Algo {
 
 			dis[i] = graph[src][i];
 		}
+		dis[src] = 0;
 
 		for (int i = 1; i < n; i++) {
 
@@ -32,7 +33,7 @@ public class Dijkstra_Algo {
 
 			for (int v = 0; v < n; v++) {
 
-				if (!vis[v] && dis[v] != Integer.MAX_VALUE && dis[tar] + graph[tar][v] < dis[v]) {
+				if (!vis[v] && graph[tar][v] != Integer.MAX_VALUE && dis[tar] + graph[tar][v] < dis[v]) {
 
 					dis[v] = dis[tar] + graph[tar][v];
 				}
@@ -47,7 +48,10 @@ public class Dijkstra_Algo {
 
 	public static void main(String[] args) {
 
-		int[][] conn = { { 0, 5, 10, 0, 0 }, { 5, 0, 3, 11, 0 }, { 10, 3, 0, 2, 0 }, { 0, 11, 2, 0, 3 },
+		int[][] conn = { { 0, 5, 10, 0, 0 },
+				{ 5, 0, 3, 11, 0 },
+				{ 10, 3, 0, 2, 0 },
+				{ 0, 11, 2, 0, 3 },
 				{ 0, 0, 0, 3, 0 } };
 
 		for (int r = 0; r < conn.length; r++) {
