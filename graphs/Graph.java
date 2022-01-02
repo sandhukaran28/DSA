@@ -153,16 +153,83 @@ public class Graph {
 		return cnt;
 	}
 
+	public boolean cycleDetectDFS(int src, int parent, Set<Integer> vis) {
+
+		vis.add(src);
+		List<Integer> nei = adjList.getOrDefault(src, new ArrayList<>());
+
+		for (int n : nei) {
+
+			if (!vis.contains(n)) {
+
+				boolean isCycle = cycleDetectDFS(n, src, vis);
+				if (isCycle) {
+					return true;
+				}
+			} else {
+
+				if (n != parent) {
+
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public boolean hasCycle(int src) {
+
+		Set<Integer> vis = new HashSet<>();
+
+		return cycleDetectDFS(src, src, vis);
+	}
+
+	public boolean hasCycleBFS(int src) {
+
+		Set<Integer> vis = new HashSet<>();
+		Queue<Integer> q = new LinkedList<>();
+		int[] parent = new int[V];
+		for (int i = 0; i < V; i++) {
+			parent[i] = i;
+		}
+		q.add(src);
+		vis.add(src);
+
+		while (!q.isEmpty()) {
+
+			int front = q.poll();
+
+			List<Integer> nei = adjList.getOrDefault(front, new ArrayList<>());
+
+			for (int n : nei) {
+
+				if (!vis.contains(n)) {
+
+					vis.add(n);
+					q.add(n);
+					parent[n] = front;
+				} else {
+
+					if (parent[front] != n) {
+
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	public static void main(String[] args) {
 
-		Graph graph = new Graph(6);
+		Graph graph = new Graph(4);
 
+		graph.addEdge(0, 1, true);
 		graph.addEdge(1, 2, true);
-		graph.addEdge(1, 4, true);
 		graph.addEdge(2, 3, true);
-		graph.addEdge(3, 4, true);
-		graph.addEdge(4, 5, true);
-		graph.addEdge(5, 6, true);
+		System.out.println(graph.hasCycle(0));
+		System.out.println(graph.hasCycleBFS(0));
 //		graph.addEdge(7, 8, true);
 
 		graph.display();
@@ -170,7 +237,7 @@ public class Graph {
 //		System.out.println();
 //		graph.dfsHelper(1);
 //		System.out.println();
-		System.out.println(graph.connectedComponents());
+//		System.out.println(graph.connectedComponents());
 
 	}
 
